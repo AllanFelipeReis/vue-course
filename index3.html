@@ -14,10 +14,13 @@
   <div id="app">
     <a href="" target="_blank" @click.prevent="preventDefaultBehavior()">Site</a>
     <hr>
-    <button @click.once="runOnce($event)">Run</button>
+    <button @click.once="runOnce($event)">Run once</button>
     <hr>
-    <input @keyup.enter="keyupEnter($event)">
+    <label>Capture keyup keys</label>
     <input @keyup="keyupKeys($event)" />
+    <hr>
+    <label>Capture keyup Enter</label>
+    <input @keyup.enter="keyupEnter($event)">
   </div>
   <script>
     const vm = new Vue({
