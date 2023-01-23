@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Vue -->
+  <script src="./vue.js"></script>
+
+  <title>Learning Vue.js</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" id="inputText">
+    <hr>
+    <select id="options">
+      <option value="A">Option A</option>
+      <option value="B">Option B</option>
+      <option value="C">Option C</option>
+    </select>
+    <hr>
+    <p id="paragraph" style="color: darkblue;">Paragraph</p>
+    <hr>
+    <button @click="selectChildElement()">Run</button>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {},
+      methods: {
+        selectChildElement() {
+          console.log(inputText.value)
+          console.log(options.value)
+          console.log(paragraph.style.color)
+          console.log(paragraph.innerHTML)
+        }
+      }
+    });
+  </script>
+</body>
+</html>
