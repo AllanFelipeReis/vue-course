@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Vue -->
+  <script src="../../vue.js"></script>
+
+  <title>Learning Vue.js</title>
+
+</head>
+<body>
+  <div id="app">
+    <!-- v-if -->
+    <button @click="toggleBalance">{{ textButton }}</button>
+    <p>Balance: <span v-if="showBalance">U$ {{ balance }}</span></p>
+    <hr>
+    <!-- v-if v-else -->
+    <label>Age</label>
+    <input type="text" id="inputAge" @blur="setAge()">
+    <p v-if="age < 18">Menor de idade</p>
+    <p v-else>Maior de idade</p>
+    <hr>
+    <!-- v-if v-else-if v-else -->
+    <label>score</label>
+    <input type="text" id="inputScore" @blur="setScore()">
+    <p v-if="score == ''">Digite uma nota</p>
+    <p v-else-if="score >= 7 && score <= 10">Aluno aprovado</p>
+    <p v-else-if="score >= 5 && score < 7">Aluno em recuperação</p>
+    <p v-else-if="score >= 0 && score < 5">Aluno reprovado</p>
+    <p v-else>A nota informada não é válida</p>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        balance: 10.5,
+        showBalance: false,
+        age: 0,
+        score: ''
+      },
+      methods: {
+        toggleBalance() {
+          this.showBalance = !this.showBalance;
+        },
+        setAge() {
+          this.age = inputAge.value;
+        },
+        setScore() {
+          this.score = inputScore.value;
+        }
+      },
+      computed: {
+        textButton() {
+          if(this.showBalance)
+            return 'Hide Balance';
+          return 'Show Balance';
+        }
+      }
+    });
+  </script>
+</body>
+</html>
