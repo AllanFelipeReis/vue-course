@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Vue -->
+    <script src="./vue.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <p>{{ firstName }} {{ lastName }}</p>
+        <p>Total value: {{ totalValue }}</p>
+        <p>Hobbies:</p>
+        <ul>
+            <li v-for="hobby in hobbies">{{ hobby }}</li>
+        </ul>
+        <p>Perfil: {{ perfil.name }}</p>
+        <p>Age: {{ perfil.age }}</p>
+        <p>Degree</p>
+        <ul>
+            <li v-for="course in perfil.courses">{{ course.name }}</li>
+        </ul>
+        <p>Sum: {{ sum() }}</p>
+        <p>Subtract: {{ subtract() }}</p>
+        <p>Multiplication: {{ multiplication() }}</p>
+        <p>Division: {{ division() }}</p>
+
+        <a :href="site">Site</a>
+        <p :class="color">Entendendo a diretiva v-bind</p>
+        <input type="text" :placeholder="site" :value="perfil.name">
+        <input type="checkbox" :checked="check">
+
+        <input type="text" @keyup="call">
+        <button @click="call($event)">Call</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    firstName: 'Allan',
+                    lastName: 'Reis',
+                    totalValue: 150.57,
+                    hobbies: [
+                        'sleep',
+                        'code',
+                        'run'
+                    ],
+                    perfil: {
+                        name: 'Allan Reis',
+                        age: 23,
+                        courses: [
+                            { name: 'Laravel' }
+                        ]
+                    },
+                    n1: 10,
+                    n2: 5,
+                    site: 'https://allanreis.com.br',
+                    color: 'red',
+                    check: true
+                }
+            },
+            methods: {
+                sum() {
+                    return this.n1 + this.n2;
+                },
+                subtract() {
+                    return this.n1 - this.n2;
+                },
+                multiplication() {
+                    return this.n1 * this.n2;
+                },
+                division() {
+                    return this.n1 / this.n2;
+                },
+                call(event) {
+                    console.log(event)
+                }
+            }
+        });
+    </script>
+</body>
+</html>

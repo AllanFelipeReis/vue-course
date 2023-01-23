@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Vue -->
+  <script src="./vue.js"></script>
+
+  <title>Learning Vue.js</title>
+
+  <style>
+    .border {
+      border: 1px solid #000;
+    }
+    .main {
+      width: 300px;
+      height: 200px;
+    }
+    .common {
+      width: 50px;
+      height: 50px;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .main.green {
+      background-color: green;
+    }
+    .main.blue {
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="border main" :class="color">
+      <p><b>Posição X do mouse:</b> {{ coordinate.x }}</p>
+      <p><b>Posição Y do mouse:</b> {{ coordinate.y }}</p>
+    </div>    
+    <hr>
+    <div class="border common" @click="setColor('green')"></div>
+    <div class="border common" @mouseover="setColor('blue')" @mouseout="setColor('white')"></div>
+    <div class="border common" @mousemove="coordinates($event)"></div>
+  </div>
+  <script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+          color: 'white',
+          coordinate: {
+            x: 0,
+            y: 0
+          }
+        },
+        methods: {
+          setColor(color) {
+            if(this.color == color)
+              return this.color = 'white';
+            return this.color = color;
+          },
+          coordinates(event) {
+            this.coordinate.x = event.clientX;
+            this.coordinate.y = event.clientY;
+          }
+        }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Vue -->
+  <script src="./vue.js"></script>
+
+  <title>Learning Vue.js</title>
+</head>
+<body>
+  <div id="app">
+    <a href="" target="_blank" @click.prevent="preventDefaultBehavior()">Site</a>
+    <hr>
+    <button @click.once="runOnce($event)">Run</button>
+    <hr>
+    <input @keyup.enter="keyupEnter($event)">
+    <input @keyup="keyupKeys($event)" />
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {},
+      methods: {
+        preventDefaultBehavior() {
+          console.log('click')
+        },
+        runOnce(event) {
+          console.log(event)
+        },
+        keyupEnter(event) {
+          console.log(event)
+        },
+        keyupKeys(event) {
+          console.log(event.key)
+        }
+      }
+    });
+  </script>
+</body>
+</html>
