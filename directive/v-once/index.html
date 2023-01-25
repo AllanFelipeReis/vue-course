@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Vue -->
+  <script src="../../vue.js"></script>
+
+  <title>Learning Vue.js</title>
+
+</head>
+<body>
+  <div id="app">
+    <p v-once >Saldo inicial: {{ balance }}</p>
+    <p>Saldo atualizado: {{ balance }}</p>
+    <hr>
+    <input type="text" id="inputScore">
+    <button @click="add">Add</button>
+    <button @click="remove">Remove</button>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        balance: 1100
+      },
+      methods: {
+        add() {
+          this.balance += parseFloat(inputScore.value)
+        },
+        remove() {
+          this.balance -= parseFloat(inputScore.value)
+        }
+      },
+      computed: {}
+    });
+  </script>
+</body>
+</html>
+
+<!-- v-show processamento mais rápido -->
