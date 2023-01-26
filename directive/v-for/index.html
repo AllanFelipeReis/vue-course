@@ -16,6 +16,7 @@
     <ul>
       <li v-for="(course, key) in courses">{{ key + 1 }} - {{ course }}</li>
     </ul>
+    
     <hr>
     <table>
       <thead>
@@ -40,6 +41,7 @@
         {{ description }}
       </li>
     </ul>
+    
     <hr>
     <ul>
       <li v-for="publication in publications" :key="publication.id">
@@ -48,10 +50,21 @@
       </li>
     </ul>
     <button @click="mixArray()">Mix Array</button>
+    
     <hr>
     <ul>
       <li v-for="n in 10">{{ n }}</li>
     </ul>
+
+    <hr>
+    <ul>
+      <li v-for="comment in comments" :key="comment.id">
+        {{ comment.id }} - {{ comment.title }}
+      </li>
+    </ul>
+    <button @click="addComment">Add Comment</button>
+    <button @click="removeComment">Remove Comment</button>
+    <button @click="editComment">Edit Comment</button>
   </div>
   <script>
     const vm = new Vue({
@@ -72,6 +85,11 @@
           { id: 1, title: "Title 1" },
           { id: 2, title: "Title 2" },
           { id: 3, title: "Title 3" },
+        ],
+        comments: [
+          { id: 1, title: "Comment 1" },
+          { id: 2, title: "Comment 2" },
+          { id: 3, title: "Comment 3" },
         ]
       },
       methods: {
@@ -81,6 +99,21 @@
           mix[1] = this.publications[0];
           mix[2] = this.publications[1];
           this.publications = mix;
+        },
+        addComment() {
+          this.comments.push({
+            id: 4,
+            title: "Comment 4"
+          })
+        },
+        removeComment() {
+          this.comments.pop();
+        },
+        editComment() {
+          this.$set(this.comments, 1, {
+            id: 2,
+            title: 'Comment 2 update'
+          })
         }
       },
       computed: {}
