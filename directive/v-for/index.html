@@ -40,6 +40,14 @@
         {{ description }}
       </li>
     </ul>
+    <hr>
+    <ul>
+      <li v-for="publication in publications" :key="publication.id">
+        {{ publication.id }} -> {{ publication.title }}
+        <input type="text">
+      </li>
+    </ul>
+    <button @click="mixArray()">Mix Array</button>
   </div>
   <script>
     const vm = new Vue({
@@ -55,9 +63,22 @@
             title: "Banco de dados",
             description: "Aprenda os principais BDs relacionais do mercado"
           },
+        },
+        publications: [
+          { id: 1, title: "Title 1" },
+          { id: 2, title: "Title 2" },
+          { id: 3, title: "Title 3" },
+        ]
+      },
+      methods: {
+        mixArray() {
+          let mix = [];
+          mix[0] = this.publications[2];
+          mix[1] = this.publications[0];
+          mix[2] = this.publications[1];
+          this.publications = mix;
         }
       },
-      methods: {},
       computed: {}
     });
   </script>
