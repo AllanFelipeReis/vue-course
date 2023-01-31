@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Vue -->
+  <script src="../vue.js"></script>
+
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <template v-if="greeting"> <!-- Não é renderizada -->
+      <h1>Welcome!</h1>
+      <p>Conteúdo da tag <strong>template</strong></p>
+    </template>
+    <hr>
+    <template v-for="n in 5">
+      <p> 2 * {{ n }} = {{ 2*n }}</p>
+    </template>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data() {
+        return {
+          greeting: true
+        }
+      },
+      methods: {}
+    });
+  </script>
+</body>
+</html>
