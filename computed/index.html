@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Vue -->
+  <script src="../vue.js"></script>
+
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h4>Adicionar Pacientes</h4>
+    <span>Nome: <input type="text" id="inputName"></span>
+    <span>Idade: <input type="text" id="inputAge"></span>
+    <span>Plano: <input type="text" id="inputPlan"></span>
+    <button @click="addPatient">Add</button>
+    <hr>
+    <h4>Último paciente cadastrado</h4>
+    <template v-if="patients.length > 0">
+      <p>Paciente: {{ patients[patients.length - 1].name }}</p>
+    </template>
+    <hr>
+    <h4>Pacientes plano Básico</h4>
+    <p v-for="patient in patients">{{ patient.plan == 'Básico' ? patient.name : '' }}</p>
+    <hr>
+    <h4>Pacientes</h4>
+    <p v-for="patient in patients">{{ patient.name }}</p>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data() {
+        return {
+          patients: []
+        }
+      },
+      methods: {
+        addPatient() {
+          this.patients.push({
+            name: inputName.value,
+            age: inputAge.value,
+            plan: inputPlan.value
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>
