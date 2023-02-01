@@ -19,12 +19,10 @@
     <button @click="addPatient">Add</button>
     <hr>
     <h4>Último paciente cadastrado</h4>
-    <template v-if="patients.length > 0">
-      <p>Paciente: {{ patients[patients.length - 1].name }}</p>
-    </template>
+    <p>{{ lastPatient }}</p>
     <hr>
     <h4>Pacientes plano Básico</h4>
-    <p v-for="patient in patients">{{ patient.plan == 'Básico' ? patient.name : '' }}</p>
+    <p v-for="patient in basicPatients">{{ patient.name }}</p>
     <hr>
     <h4>Pacientes</h4>
     <p v-for="patient in patients">{{ patient.name }}</p>
@@ -44,6 +42,17 @@
             age: inputAge.value,
             plan: inputPlan.value
           });
+        }
+      },
+      computed: {
+        lastPatient() {
+          if(this.patients.length < 1)
+            return;
+
+          return this.patients[this.patients.length - 1].name;
+        },
+        basicPatients() {
+          return this.patients.filter(patient => patient.plan == 'Básico')
         }
       }
     });
