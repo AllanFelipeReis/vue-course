@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Vue -->
+  <script src="../vue.js"></script>
+
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <span>Paciente: </span>
+    <input type="text" v-model="patient">
+    <hr>
+    <ul>
+      <li v-for="result in results">{{ result.name }} - {{ result.age }}</li>
+    </ul>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data() {
+        return {
+          patient: "",
+          patients: [
+            { name: "Allan Reis", age: "23" },
+            { name: "Antonio Del Rio", age: "23" },
+            { name: "Aldo Silva", age: "32" },
+            { name: "Allan De Poe", age: "32" },
+            { name: "Antonieta Maria", age: "43" },
+            { name: "Anselmo De Paula", age: "43" },
+          ],
+          results: []
+        }
+      },
+      methods: {},
+      computed: {},
+      watch: {
+        patient(newVal) {
+          if(!newVal)
+            return this.results = [];
+          return this.results = this.patients.filter(patient => patient.name.match(newVal))
+        }
+      }
+    });
+  </script>
+</body>
+</html>
