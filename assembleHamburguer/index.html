@@ -41,11 +41,11 @@
                 <div class="card-header">Tipo do Pão</div>
                 <div class="card-body">
                   <div class="form-check form-check-inline">
-                    <input id="gergelim" type="radio" class="form-check-input">
+                    <input id="gergelim" type="radio" class="form-check-input" value="gergelim" v-model="typeBread">
                     <label for="gergelim" class="form-check-label">Gergelim</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input id="australiano" type="radio" class="form-check-input">
+                    <input id="australiano" type="radio" class="form-check-input" value="australiano" v-model="typeBread">
                     <label for="australiano" class="form-check-label">Australiano</label>
                   </div>
                 </div>
@@ -117,11 +117,22 @@
   <script>
     const vm = new Vue({
       el: "#app",
-      data: {},
+      data: {
+        typeBread: null
+      },
       methods: {},
       computed: {
         bread() {
-          return ["imagens/padrao/pao_superior.png", "imagens/padrao/pao_inferior.png"];
+          switch(this.typeBread) {
+            case "gergelim":
+              return ["imagens/pao_gergelim_superior.png", "imagens/pao_gergelim_inferior.png"];
+
+            case "australiano":
+              return ["imagens/pao_australiano_superior.png", "imagens/pao_australiano_inferior.png"];
+
+            default:
+              return ["imagens/padrao/pao_superior.png", "imagens/padrao/pao_inferior.png"];
+          }
         },
         salad() {
           return "imagens/padrao/alface.png";
