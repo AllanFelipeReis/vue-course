@@ -59,7 +59,7 @@
                 <div class="card-header">Saladas</div>
                 <div class="card-body">
                   <div class="form-check form-check-inline">
-                    <input id="alface" type="checkbox" class="form-check-input">
+                    <input id="alface" type="checkbox" class="form-check-input" value="alface" v-model="typeSalad">
                     <label for="alface" class="form-check-label">Alface</label>
                   </div>
                 </div>
@@ -73,16 +73,16 @@
                 <div class="card-header">Molhos</div>
                 <div class="card-body">
                   <div class="form-check form-check-inline">
-                    <input id="ketchup" type="checkbox" class="form-check-input">
+                    <input id="ketchup" type="checkbox" class="form-check-input" value="ketchup" v-model="typeSauce">
                     <label for="ketchup" class="form-check-label">Ketchup</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input id="mostarda" type="checkbox" class="form-check-input">
+                    <input id="mostarda" type="checkbox" class="form-check-input" value="mostarda" v-model="typeSauce">
                     <label for="mostarda" class="form-check-label">Mostarda</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input id="maione" type="checkbox" class="form-check-input">
-                    <label for="maione" class="form-check-label">Maionese</label>
+                    <input id="maionese" type="checkbox" class="form-check-input" value="maionese" v-model="typeSauce">
+                    <label for="maionese" class="form-check-label">Maionese</label>
                   </div>
                 </div>
               </div>
@@ -95,15 +95,15 @@
                 <div class="card-header">Tipo de Hambúrguer</div>
                 <div class="card-body">
                   <div class="form-check form-check-inline">
-                    <input id="bovino" type="radio" class="form-check-input">
+                    <input id="bovino" type="radio" class="form-check-input" value="bovino" v-model="typeMeat">
                     <label for="bovino" class="form-check-label">Bovino</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input id="frango" type="radio" class="form-check-input">
+                    <input id="frango" type="radio" class="form-check-input" value="frango" v-model="typeMeat">
                     <label for="frango" class="form-check-label">Frango</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input id="soja" type="radio" class="form-check-input">
+                    <input id="soja" type="radio" class="form-check-input" value="soja" v-model="typeMeat">
                     <label for="soja" class="form-check-label">Soja</label>
                   </div>
                 </div>
@@ -118,7 +118,10 @@
     const vm = new Vue({
       el: "#app",
       data: {
-        typeBread: null
+        typeBread: null,
+        typeSalad: [],
+        typeSauce: [],
+        typeMeat: null
       },
       methods: {},
       computed: {
@@ -135,19 +138,37 @@
           }
         },
         salad() {
+          if(this.typeSalad.includes("alface"))
+            return "imagens/alface.png";
           return "imagens/padrao/alface.png";
         },
         ketchup() {
+          if(this.typeSauce.includes("ketchup"))
+            return "imagens/ketchup.png";
           return "imagens/padrao/molho.png";
         },
         mustard() {
+          if(this.typeSauce.includes("mostarda"))
+            return "imagens/mostarda.png";
           return "imagens/padrao/molho.png";
         },
         mayonnaise() {
+          if(this.typeSauce.includes("maionese"))
+            return "imagens/maionese.png";
           return "imagens/padrao/molho.png";
         },
         meat() {
-          return "imagens/padrao/hamburguer.png";
+          switch(this.typeMeat) {
+            case "bovino":
+              return "imagens/bovino.png";
+            case "frango":
+              return "imagens/frango.png";
+            case "soja":
+              return "imagens/soja.png";
+            default:
+              return "imagens/padrao/hamburguer.png";
+          }
+          
         }
       }
     })
