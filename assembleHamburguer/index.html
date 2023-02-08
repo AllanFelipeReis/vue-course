@@ -33,84 +33,119 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <!-- Tipos de pão -->
-          <div class="row mt-2">
-            <div class="col">
-              <div class="card">
-                <div class="card-header">Tipo do Pão</div>
-                <div class="card-body">
-                  <div class="form-check form-check-inline">
-                    <input id="gergelim" type="radio" class="form-check-input" value="gergelim" v-model="typeBread">
-                    <label for="gergelim" class="form-check-label">Gergelim</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input id="australiano" type="radio" class="form-check-input" value="australiano" v-model="typeBread">
-                    <label for="australiano" class="form-check-label">Australiano</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Saladas -->
-          <div class="row mt-2">
-            <div class="col">
-              <div class="card">
-                <div class="card-header">Saladas</div>
-                <div class="card-body">
-                  <div class="form-check form-check-inline">
-                    <input id="alface" type="checkbox" class="form-check-input" value="alface" v-model="typeSalad">
-                    <label for="alface" class="form-check-label">Alface</label>
+        <template v-if="step == 1">
+          <div class="col-md-6">
+            <!-- Tipos de pão -->
+            <div class="row mt-2">
+              <div class="col">
+                <div class="card">
+                  <div class="card-header">Tipo do Pão</div>
+                  <div class="card-body">
+                    <div class="form-check form-check-inline">
+                      <input id="gergelim" type="radio" class="form-check-input" value="gergelim" v-model="typeBread">
+                      <label for="gergelim" class="form-check-label">Gergelim</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input id="australiano" type="radio" class="form-check-input" value="australiano" v-model="typeBread">
+                      <label for="australiano" class="form-check-label">Australiano</label>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <!-- Molhos -->
-          <div class="row mt-2">
-            <div class="col">
-              <div class="card">
-                <div class="card-header">Molhos</div>
-                <div class="card-body">
-                  <div class="form-check form-check-inline">
-                    <input id="ketchup" type="checkbox" class="form-check-input" value="ketchup" v-model="typeSauce">
-                    <label for="ketchup" class="form-check-label">Ketchup</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input id="mostarda" type="checkbox" class="form-check-input" value="mostarda" v-model="typeSauce">
-                    <label for="mostarda" class="form-check-label">Mostarda</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input id="maionese" type="checkbox" class="form-check-input" value="maionese" v-model="typeSauce">
-                    <label for="maionese" class="form-check-label">Maionese</label>
+            <!-- Saladas -->
+            <div class="row mt-2">
+              <div class="col">
+                <div class="card">
+                  <div class="card-header">Saladas</div>
+                  <div class="card-body">
+                    <div class="form-check form-check-inline">
+                      <input id="alface" type="checkbox" class="form-check-input" value="alface" v-model="typeSalad">
+                      <label for="alface" class="form-check-label">Alface</label>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <!-- Tipo Hamburguer -->
-          <div class="row mt-2">
-            <div class="col">
-              <div class="card">
-                <div class="card-header">Tipo de Hambúrguer</div>
-                <div class="card-body">
-                  <div class="form-check form-check-inline">
-                    <input id="bovino" type="radio" class="form-check-input" value="bovino" v-model="typeMeat">
-                    <label for="bovino" class="form-check-label">Bovino</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input id="frango" type="radio" class="form-check-input" value="frango" v-model="typeMeat">
-                    <label for="frango" class="form-check-label">Frango</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input id="soja" type="radio" class="form-check-input" value="soja" v-model="typeMeat">
-                    <label for="soja" class="form-check-label">Soja</label>
+            <!-- Molhos -->
+            <div class="row mt-2">
+              <div class="col">
+                <div class="card">
+                  <div class="card-header">Molhos</div>
+                  <div class="card-body">
+                    <div class="form-check form-check-inline">
+                      <input id="ketchup" type="checkbox" class="form-check-input" value="ketchup" v-model="typeSauce">
+                      <label for="ketchup" class="form-check-label">Ketchup</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input id="mostarda" type="checkbox" class="form-check-input" value="mostarda" v-model="typeSauce">
+                      <label for="mostarda" class="form-check-label">Mostarda</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input id="maionese" type="checkbox" class="form-check-input" value="maionese" v-model="typeSauce">
+                      <label for="maionese" class="form-check-label">Maionese</label>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <!-- Tipo Hamburguer -->
+            <div class="row mt-2">
+              <div class="col">
+                <div class="card">
+                  <div class="card-header">Tipo de Hambúrguer</div>
+                  <div class="card-body">
+                    <div class="form-check form-check-inline">
+                      <input id="bovino" type="radio" class="form-check-input" value="bovino" v-model="typeMeat">
+                      <label for="bovino" class="form-check-label">Bovino</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input id="frango" type="radio" class="form-check-input" value="frango" v-model="typeMeat">
+                      <label for="frango" class="form-check-label">Frango</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input id="soja" type="radio" class="form-check-input" value="soja" v-model="typeMeat">
+                      <label for="soja" class="form-check-label">Soja</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="row mt-2">
+              <div class="col d-flex justify-content-end">
+                <button class="btn btn-primary" @click="makeOrder">Fazer Pedido</button>
+              </div>
+            </div>
           </div>
-        </div>
+        </template>
+        <template v-if="step == 2">
+          <div class="col-md-6">
+            <div class="row mt-2">
+              <div class="col">
+                <div class="card">
+                  <div class="card-header">Informe seus Dados</div>
+                  <div class="card-body">
+                    <div class="mb-3">
+                      <label for="Nome" class="form-label">Nome</label>
+                      <input type="text" class="form-control" v-model="contact.name">
+                    </div>
+                    <div class="mb-3">
+                      <label for="Nome" class="form-label">Endereço</label>
+                      <input type="text" class="form-control" v-model="contact.address">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col d-flex justify-content-between">
+                <button class="btn btn-warning" @click="step -= 1">Voltar para o lanche</button>
+                <button class="btn btn-success">Confirmar</button>
+              </div>
+            </div>
+          </div>
+        </template>
       </div>
     </div>
   </div>
@@ -121,9 +156,20 @@
         typeBread: null,
         typeSalad: [],
         typeSauce: [],
-        typeMeat: null
+        typeMeat: null,
+        step: 1,
+        contact: {
+          name: null,
+          address: null
+        }
       },
-      methods: {},
+      methods: {
+        makeOrder() {
+          if(!this.typeBread && !this.typeMeat)
+            return alert("Você precisa selecionar no mínimo um pão e um hambúrguer");
+          this.step = 2;
+        }
+      },
       computed: {
         bread() {
           switch(this.typeBread) {
