@@ -141,7 +141,28 @@
             <div class="row mt-2">
               <div class="col d-flex justify-content-between">
                 <button class="btn btn-warning" @click="step -= 1">Voltar para o lanche</button>
-                <button class="btn btn-success">Confirmar</button>
+                <button class="btn btn-success" @click="confirmOrder">Confirmar</button>
+              </div>
+            </div>
+          </div>
+        </template>
+        <template v-if="step == 3">
+          <div class="col-md-6">
+            <div class="row mt-2">
+              <div class="col">
+                <div class="card">
+                  <div class="card-header">Pedido Confirmado!</div>
+                  <div class="card-body">
+                    <p>Agora é só aguardar</p>
+                    <p>Vamos chamar você em breve</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col d-flex justify-content-between">
+                <button class="btn btn-warning" @click="step = 1">Repetir pedido</button>
+                <button class="btn btn-success" @click="newOrder">Novo pedido</button>
               </div>
             </div>
           </div>
@@ -161,13 +182,32 @@
         contact: {
           name: null,
           address: null
-        }
+        },
+        timeout: null
       },
       methods: {
         makeOrder() {
-          if(!this.typeBread && !this.typeMeat)
+          if(!this.typeBread || !this.typeMeat)
             return alert("Você precisa selecionar no mínimo um pão e um hambúrguer");
           this.step = 2;
+        },
+        confirmOrder() {
+          if(!this.contact.name || !this.contact.address)
+            return alert("Você precisa preencher o seu nome e endereço");
+
+          this.step = 3;
+          this.timeout = setTimeout(() => this.newOrder(), 5000)
+        },
+        newOrder() {
+          this.typeBread = null;
+          this.typeSalad = [];
+          this.typeSauce = [];
+          this.typeMeat = null;
+
+          this.contact.name = null;
+          this.contact.address = null;
+
+          this.step = 1;
         }
       },
       computed: {
@@ -215,6 +255,12 @@
               return "imagens/padrao/hamburguer.png";
           }
           
+        }
+      },
+      watch: {
+        step(val) {
+          if(val == 1)
+            clearTimeout(this.timeout)
         }
       }
     })
