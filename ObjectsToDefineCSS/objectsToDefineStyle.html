@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Vue -->
+  <script src="../vue.js"></script>
+
+  <title>Using objects to define style</title>
+</head>
+<body>
+  <div id="app">
+    <h1>Manipulando CSS com VueJS</h1>
+    <div :style="{
+      background: bg,
+      width: width + 'px',
+      height: height + 'px',
+      padding: padding + 'px',
+      fontSize: fontSize + 'px', // Use camel case
+      color: color
+    }">
+      <p>Definindo styles com objetos</p>  
+    </div>
+    <div style="display: flex; gap: 20px;">
+      <div :style="style">
+        <p>Definindo styles com objetos</p>  
+      </div>
+  
+      <pre>{{ style }}</pre>
+    </div>
+
+    <hr>
+
+    <button @click="increaseFont()">Increase Font</button>
+    <button @click="decreaseFont()">Decrease Font</button>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        bg: "lightblue",
+        width: 300,
+        height: 200,
+        padding: 5,
+        fontSize: 12,
+        color: "darkblue"
+      },
+      methods: {
+        increaseFont() 
+        {
+          this.fontSize += 2;
+        },
+        decreaseFont()
+        {
+          this.fontSize -= 2;
+        }
+      },
+      computed: {
+        style() {
+          let width = Math.floor((Math.random() * 100) + 100);
+          let height = Math.floor((Math.random() * 50) + 50);
+
+          let background = "white";
+          let color = "black";
+
+          let now = new Date();
+          if(now.getHours() > 18)  // Mode dark
+          {
+            background = "black";
+            color = "white"
+          }
+            
+          return {
+            background: background,
+            width: width + "px",
+            height: height + "px",
+            padding: "5px",
+            fontSize: this.fontSize + "px",
+            color: color
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
