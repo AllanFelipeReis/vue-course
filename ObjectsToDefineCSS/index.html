@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Vue -->
+  <script src="../vue.js"></script>
+
+  <title>Using objects to define visual styles through the class attribute</title>
+
+  <style>
+    .bg-red {
+      background-color: red;
+    }
+    .color-white {
+      color: white;
+    }
+    .emphasis {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>Manipulando CSS com VueJS</h1>
+    <p :class="{ 'bg-red': isRed, 'color-white': isColorWhite, emphasis: isEmphasis }">Definindo classes com objeto</p>
+    <button @click="isRed = !isRed">
+      <span v-show="isRed">Remove BG</span>
+      <span v-show="!isRed">Add BG</span>
+    </button>
+
+    <button @click="isColorWhite = !isColorWhite">
+      <span v-show="isColorWhite">Remove color white</span>
+      <span v-show="!isColorWhite">Add color white</span>
+    </button>
+
+    <button @click="isEmphasis = !isEmphasis">
+      <span v-show="isEmphasis">Remove emphasis</span>
+      <span v-show="!isEmphasis">Add emphasis</span>
+    </button>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data() {
+        return {
+          isRed: false,
+          isColorWhite: false,
+          isEmphasis: false
+        }
+      },
+      methods: {},
+      computed: {},
+      watch: {}
+    });
+  </script>
+</body>
+</html>
