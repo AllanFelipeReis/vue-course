@@ -24,8 +24,16 @@
 </head>
 <body>
   <div id="app">
-    <h1>Manipulando CSS com VueJS</h1>
+    <h1>Manipulando CSS com VueJS (Object)</h1>
     <p :class="{ 'bg-red': isRed, 'color-white': isColorWhite, emphasis: isEmphasis }">Definindo classes com objeto</p>
+
+    <hr>
+
+    <h1>Manipulando CSS com VueJS (Array)</h1>
+    <p :class="style">Definindo classes com array</p>
+
+    <hr>
+
     <button @click="isRed = !isRed">
       <span v-show="isRed">Remove BG</span>
       <span v-show="!isRed">Add BG</span>
@@ -48,11 +56,29 @@
         return {
           isRed: false,
           isColorWhite: false,
-          isEmphasis: false
+          isEmphasis: false,
+          style1: "bg-red",
+          style2: "color-white",
+          style3: "emphasis"
         }
       },
       methods: {},
-      computed: {},
+      computed: {
+        style() {
+          let style = [];
+
+          if(this.isRed)
+            style.push("bg-red");
+
+          if(this.isColorWhite)
+            style.push("color-white");
+            
+          if(this.isEmphasis)
+            style.push("emphasis");
+          
+          return style;
+        }
+      },
       watch: {}
     });
   </script>
