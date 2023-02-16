@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Vue -->
+  <script src="../vue.js"></script>
+
+  <title>Using objects to define style</title>
+</head>
+<body>
+  <div id="app">
+    <form ref="register">
+      <div>
+        <label>Name</label>
+        <br>
+        <input type="text">
+      </div>
+      <div>
+        <label>Comentário</label>
+        <br>
+        <textarea rows="3"></textarea>
+      </div>
+      <div>
+        <button type="button" @click="register">Cadastrar</button>
+      </div>
+    </form>
+    <hr>
+    <h2>Cadastros</h2>
+    <ul>
+      <li v-for="comment in comments">
+        <p>{{ comment.text }}</p>
+        <small>{{ comment.name }}</small>
+      </li>
+    </ul>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        comments: []
+      },
+      methods: {
+        register() {
+          this.comments.push({
+            name: this.$refs.register[0].value,
+            text: this.$refs.register[1].value
+          });
+        }
+      },
+      computed: {}
+    });
+  </script>
+</body>
+</html>
