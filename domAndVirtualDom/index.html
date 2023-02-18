@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Vue -->
+  <script src="../vue.js"></script>
+
+  <title>Dom and Virtual Dom</title>
+</head>
+<body>
+  <div id="app">
+    <p v-text="text"></p>
+    <button @click="changeTextVD">Adicionar @ (VD)</button>
+    <button onclick="changeText()">Adicionar @</button>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        text: "Dom and Virtual Dom"
+      },
+      methods: {
+        changeTextVD() {
+          this.text = "@" + this.text;
+        }
+      }
+    });
+
+    const changeText = () => {
+      const element = document.querySelector("p");
+      let currentText = element.innerText
+      currentText = "@" + currentText
+      element.innerText = currentText;
+    }
+  </script>
+</body>
+</html>
