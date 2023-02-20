@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Vue -->
+  <script src="../vue3.js"></script>
+
+  <title>Vuejs 3</title>
+</head>
+<body>
+  <div id="app">
+    <h1>{{ header }}</h1>
+    <p>{{ description }}</p>
+  </div>
+  <script>
+    const vm = {
+      data() {
+        return {
+          header: "Olá, Vue3",
+          description: "Vue.js 3 working"
+        }
+      }
+    }
+
+    Vue.createApp(vm).mount("#app");
+  </script>
+</body>
+</html>
